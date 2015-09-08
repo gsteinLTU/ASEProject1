@@ -7,6 +7,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.ltu.stringreporter.StringReporter;
+
 /**
  * @author gstein
  *
@@ -42,6 +44,8 @@ public class StringReporterTest {
 	 */
 	@Test
 	public void testGetWordLength() {
+		assertSame(1, StringReporter.getWordLength("a"));
+		
 		fail("Not yet implemented");
 	}
 
