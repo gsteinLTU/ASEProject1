@@ -5,6 +5,8 @@ package edu.ltu.stringreporter.tests;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+
 import org.junit.Test;
 
 import edu.ltu.stringreporter.StringReporter;
@@ -20,7 +22,21 @@ public class StringReporterTest {
 	 */
 	@Test
 	public void testHandleFile() {
-		fail("Not yet implemented");
+		// Test that txt file works
+		try{
+			StringReporter.handleFile(new File("test.txt"));
+		} catch(Exception e){
+			fail("Exception thrown for valid file");
+		}
+		
+		// Test that non-txt file doesn't work
+		try{
+			StringReporter.handleFile(new File("test.png"));
+		} catch(Exception e){
+			return;
+		}
+		
+		fail("Exception not thrown for invalid file");
 	}
 
 	/**
