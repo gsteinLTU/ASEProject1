@@ -1,5 +1,6 @@
 package edu.ltu.stringreporter;
 
+
 import java.io.File;
 import java.util.ArrayList;
 //import java.util.List;
@@ -12,6 +13,7 @@ public class StringReporter {
 
 	
 	
+	public static HashMap<String, Integer> HashWordsOcurrance = new HashMap<String, Integer>();
 	
 	/**
 	 * Determines unique words and outputs them, their lengths, and their frequencies
@@ -28,12 +30,12 @@ public class StringReporter {
 	 */
 	static ArrayList<String> getUniqueWords(String document) throws FileNotFoundException 
 	{
-	    HashMap<String, Integer> HashWordsOcurrance = new HashMap<String, Integer>(); 
+	    
 
 	    // read text file
 	    Scanner infile = new Scanner(new File(document));
 	    while (infile.hasNext()) {
-	      // not diferenciate between markation characters yet  	
+	      // not differenced between markation characters yet  	
 	      String word = infile.next();
 	      
 	      
@@ -72,9 +74,17 @@ public class StringReporter {
 	 * @param word Word to count occurrences of
 	 * @return Number of times word appears in the document
 	 */
-	static int getWordFrequency(String document, String word) throws FileNotFoundException{ 
-		return 0;
-	
+	static int getWordFrequency(String word){
+		Integer count; 
+		if (HashWordsOcurrance.get(word)!=null)
+		{
+			count = (Integer)HashWordsOcurrance.get(word);
+		}
+		else 
+		{
+			count =0; 
+		}
+		return count;
 	}
 	
 	/**
