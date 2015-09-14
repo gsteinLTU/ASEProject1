@@ -25,7 +25,7 @@ public class StringReporter {
 	 * @param document String of document text
 	 * @return List of unique words, in alphabetical order
 	 */
-	public static List<String> getUniqueWords(String document){
+	public static ArrayList<String> getUniqueWords(String document){
 		return new ArrayList<String>();
 	}
 	
