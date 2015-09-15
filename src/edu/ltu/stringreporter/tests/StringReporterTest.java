@@ -48,7 +48,7 @@ public class StringReporterTest {
 	 */
 	@Test
 	public void testGetUniqueWords() {
-		String file = "one two three one";
+		String file = "one two three.\n\"One, two, three!\"";
 
 		ArrayList<String> WordslistTestExpected = new ArrayList<String>();
 		WordslistTestExpected.add("one");
@@ -67,24 +67,27 @@ public class StringReporterTest {
 	 */
 	@Test
 	public void testGetWordFrequency() {
-		String s = "hello kiran hello jonhny hello gordon";
+		String teststring = "Hello Kiran! Hello Jonhny. Hello, Gordon. Is that 'hello' to everyone?";
+		String s = "hello kiran hello jonhny hello gordon is that hello to everyone";
+
 		String[] each = s.split(" "); // Splitting the string by spaces
 		int cnt = 0; // counter
 		String kWord = "hello"; // place the unique word that needs to know the
 								// frequency of that word
 		for (int i = 0; i < each.length; i++) {
-			if (each[i].equals(kWord)) {
+			if (each[i].equalsIgnoreCase(kWord)) {
 				cnt++;
 			}
 		}
 		assertEquals(cnt, StringReporter.getWordFrequency(s, kWord));
 		
 		// Additional tests
-		assertEquals(0, StringReporter.getWordFrequency(s, "test"));
-		assertEquals(1, StringReporter.getWordFrequency(s, "kiran"));
-		assertEquals(0, StringReporter.getWordFrequency(s, "johnny"));
-		assertEquals(1, StringReporter.getWordFrequency(s, "jonhny"));
-		assertEquals(1, StringReporter.getWordFrequency(s, "gordon"));
+		assertEquals(0, StringReporter.getWordFrequency(teststring, "test"));
+		assertEquals(1, StringReporter.getWordFrequency(teststring, "kiran"));
+		assertEquals(0, StringReporter.getWordFrequency(teststring, "johnny"));
+		assertEquals(1, StringReporter.getWordFrequency(teststring, "jonhny"));
+		assertEquals(1, StringReporter.getWordFrequency(teststring, "gordon"));
+		assertEquals(1, StringReporter.getWordFrequency(teststring, "everyone"));
 	}
 
 	/**
