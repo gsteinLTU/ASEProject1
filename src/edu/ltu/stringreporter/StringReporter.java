@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.swing.JFileChooser;
 
@@ -87,7 +89,24 @@ public class StringReporter {
 	 * @return List of unique words, in alphabetical order
 	 */
 	public static ArrayList<String> getUniqueWords(String document){
-		return new ArrayList<String>();
+		ArrayList<String> wordslist = new ArrayList<String>();
+
+		// Read document
+		Scanner infile = new Scanner(document);
+
+		while (infile.hasNext()) {
+			// not differenced between markation characters yet
+			String word = infile.next();
+
+			if (!wordslist.contains(word)) {
+				wordslist.add(word); // First time occurance
+			}
+		}
+		infile.close();
+
+		Collections.sort(wordslist);// Sort to alphabetical order
+
+		return wordslist;
 	}
 	
 	/**
