@@ -42,7 +42,7 @@ public class StringReporterTest {
 			e.printStackTrace();
 		}
 		
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	/**
