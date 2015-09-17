@@ -30,11 +30,11 @@ public class StringReporterTest {
 	@Test
 	public void testGetUniqueWords() {
 		
-		String TestSentence = "one, two?three";
+		String TestSentence = "one, one?three";
 		ArrayList<String> WordslistTestExpected =  new ArrayList<String>();
 		WordslistTestExpected.add("ONE");
 		WordslistTestExpected.add("THREE");
-		WordslistTestExpected.add("TWO");
+		//WordslistTestExpected.add("TWO");
 		
 
 		
@@ -51,7 +51,7 @@ public class StringReporterTest {
 	public void testGetWordFrequency() {
 		int WorldFrequency = 2;
 		
-		
+		String TestSentence = "one, one?three";
 		ArrayList<String> WordslistTestExpected =  new ArrayList<String>();
 		WordslistTestExpected.add("ONE");
 		WordslistTestExpected.add("ONE");
@@ -60,7 +60,7 @@ public class StringReporterTest {
 		//String TestString = "Class";
 		// Run  the  StringReporter.getUniqueWords(document) first 
 		
-		int WorldFrequencyResult = StringReporter.getWordFrequency(WordslistTestExpected,"ONE");
+		int WorldFrequencyResult = StringReporter.getWordFrequency(TestSentence,"ONE");
 		assertEquals(WorldFrequency,WorldFrequencyResult);
 
 	}

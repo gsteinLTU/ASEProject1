@@ -83,7 +83,7 @@ public class StringReporter {
 		for(String word : words){
 			System.out.print(word);
 			System.out.print(" (" + getWordLength(word) + " characters long): ");
-			System.out.println(getWordFrequency(words, word) + " occurances");
+			System.out.println(getWordFrequency(fileContents, word) + " occurances");
 		}
 		
 	}
@@ -98,7 +98,18 @@ public class StringReporter {
 	    
 		ArrayList<String> wordsArrayList = new ArrayList<String>();
 		for(String word : fileContents.split("[[ ]*|[,]*|[\\.]*|[:]*|[/]*|[!]*|[?]*|[+]*]+")) {
-		    wordsArrayList.add(word.toUpperCase());
+		    
+		    Integer count=0;
+			for (String WordSearched: wordsArrayList) {
+	            if(WordSearched.matches(word.toUpperCase())){
+	            	count++;
+	            }
+	        }
+			if (count==0)
+			{
+				wordsArrayList.add(word.toUpperCase());
+			}
+
 		}
 	    Collections.sort(wordsArrayList);// in alphabetical order
 		return wordsArrayList;
@@ -115,14 +126,24 @@ public class StringReporter {
 	 * @param word Word to count occurrences of
 	 * @return Number of times word appears in the document
 	 */
-	static int getWordFrequency(ArrayList<String> words, String word){
+	static int getWordFrequency(String words, String word){
 	   Integer counter=0;
 		
-		for (String WordSelection : words) {
-            if(WordSelection.matches(word)){
-            	counter++;
-            }
-        }
+		
+		
+	   Integer count=0;
+		for(String wordExtrated : words.split("[[ ]*|[,]*|[\\.]*|[:]*|[/]*|[!]*|[?]*|[+]*]+")) {
+		    
+		    
+		    String WordMatch = wordExtrated.toUpperCase();
+			
+	            if(WordMatch.matches(word.toUpperCase())){
+	            	count++;
+	            	counter=count;
+	            }
+	        
+		}
+		
 		
 		return counter;
 	}
