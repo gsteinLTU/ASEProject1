@@ -5,7 +5,7 @@ package edu.ltu.stringreporter;
 
 import static org.junit.Assert.*;
 
-import java.io.FileNotFoundException;
+//import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -29,18 +29,17 @@ public class StringReporterTest {
 	 */
 	@Test
 	public void testGetUniqueWords() {
+		
+		String TestSentence = "one, two?three";
 		ArrayList<String> WordslistTestExpected =  new ArrayList<String>();
-		WordslistTestExpected.add("one");
-		WordslistTestExpected.add("two");
-		WordslistTestExpected.add("three");
+		WordslistTestExpected.add("ONE");
+		WordslistTestExpected.add("THREE");
+		WordslistTestExpected.add("TWO");
+		
 
-		try {
-			ArrayList<String> WordslistTest = StringReporter.getUniqueWords("test.txt");
+		
+			ArrayList<String> WordslistTest = StringReporter.getUniqueWords(TestSentence);
 			assertEquals(WordslistTestExpected,WordslistTest);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		//fail("Not yet implemented");
 	}
@@ -50,11 +49,18 @@ public class StringReporterTest {
 	 */
 	@Test
 	public void testGetWordFrequency() {
-		int WorldFrequency = 0;
+		int WorldFrequency = 2;
+		
+		
+		ArrayList<String> WordslistTestExpected =  new ArrayList<String>();
+		WordslistTestExpected.add("ONE");
+		WordslistTestExpected.add("ONE");
+		WordslistTestExpected.add("TWO");
+		
 		//String TestString = "Class";
 		// Run  the  StringReporter.getUniqueWords(document) first 
 		
-		int WorldFrequencyResult = StringReporter.getWordFrequency("the");
+		int WorldFrequencyResult = StringReporter.getWordFrequency(WordslistTestExpected,"ONE");
 		assertEquals(WorldFrequency,WorldFrequencyResult);
 
 	}

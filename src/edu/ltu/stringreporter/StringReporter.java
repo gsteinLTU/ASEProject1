@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 //import java.util.List;
-import java.io.*;
+//import java.io.*;
 import java.util.*;
 
 
@@ -14,7 +14,7 @@ import javax.swing.JFileChooser;
 
 
 public class StringReporter {
-
+	// Hashmap use to storage the value of the the word (string) and the frequency (integer)  
 	
 
 	public static void main(String[] args) {
@@ -48,7 +48,7 @@ public class StringReporter {
 		}
 	}
 	
-	public static HashMap<String, Integer> HashWordsOcurrance = new HashMap<String, Integer>();
+	
 	
 	/**
 	 * Determines unique words and outputs them, their lengths, and their frequencies
@@ -72,7 +72,7 @@ public class StringReporter {
 			builder.append(" ");		
 			line = br.readLine();
 		}
-		
+		br.close();
 		String fileContents = builder.toString();
 		
 		// Display output
@@ -83,7 +83,7 @@ public class StringReporter {
 		for(String word : words){
 			System.out.print(word);
 			System.out.print(" (" + getWordLength(word) + " characters long): ");
-			System.out.println(getWordFrequency(fileContents, word) + " occurances");
+			System.out.println(getWordFrequency(words, word) + " occurances");
 		}
 		
 	}
@@ -93,39 +93,15 @@ public class StringReporter {
 	 * @param document String of document text
 	 * @return List of unique words, in alphabetical order
 	 */
-	static ArrayList<String> getUniqueWords(String document) throws FileNotFoundException 
+	static ArrayList<String> getUniqueWords(String fileContents)  
 	{
 	    
-
-	    // read text file
-	    Scanner infile = new Scanner(new File(document));
-	    while (infile.hasNext()) {
-	      // not differenced between markation characters yet  	
-	      String word = infile.next();
-	      
-	      
-	      if(HashWordsOcurrance.containsKey(word)) {
-	        
-	        Integer count = (Integer)HashWordsOcurrance.get(word);
-	        HashWordsOcurrance.put(word, new Integer(count.intValue() + 1));// Increment occurrance 
-	      } else {
-	        
-	    	  HashWordsOcurrance.put(word, new Integer(1)); // First time occurance
-	      }
-	    }
-	    infile .close();
-
-	   
-	    
-	    ArrayList<String> Wordslist = new ArrayList<String>(HashWordsOcurrance.keySet());
-	    Collections.sort(Wordslist);// in alphabetical order
-	    
-	    /*for (int i = 0; i < arraylist.size(); i++) {
-	      String key = (String)arraylist.get(i);
-	      Integer count = (Integer)map.get(key);
-	      System.out.println(key + " --> " + count);
-	    }*/
-		return Wordslist;
+		ArrayList<String> wordsArrayList = new ArrayList<String>();
+		for(String word : fileContents.split("[[ ]*|[,]*|[\\.]*|[:]*|[/]*|[!]*|[?]*|[+]*]+")) {
+		    wordsArrayList.add(word.toUpperCase());
+		}
+	    Collections.sort(wordsArrayList);// in alphabetical order
+		return wordsArrayList;
 
 	  }
 
@@ -139,17 +115,16 @@ public class StringReporter {
 	 * @param word Word to count occurrences of
 	 * @return Number of times word appears in the document
 	 */
-	static int getWordFrequency(String word){
-		Integer count; 
-		if (HashWordsOcurrance.get(word)!=null)
-		{
-			count = (Integer)HashWordsOcurrance.get(word);
-		}
-		else 
-		{
-			count =0; 
-		}
-		return count;
+	static int getWordFrequency(ArrayList<String> words, String word){
+	   Integer counter=0;
+		
+		for (String WordSelection : words) {
+            if(WordSelection.matches(word)){
+            	counter++;
+            }
+        }
+		
+		return counter;
 	}
 		/**
 	 * Determine the length of a word
