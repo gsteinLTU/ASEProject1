@@ -81,9 +81,12 @@ public class StringReporter {
 		for(String word : words){
 			System.out.print(word);
 			System.out.print(" (" + getWordLength(word) + " characters long): ");
-			System.out.println(getWordFrequency(fileContents, word) + " occurances");
-		}
-		
+			
+			int frequency = getWordFrequency(fileContents, word);
+			
+			// Change message if only one occurrence
+			System.out.println(frequency + (frequency > 1? " occurrences" : " occurrence"));
+		}		
 	}
 	
 	/**
@@ -94,19 +97,22 @@ public class StringReporter {
 	public static ArrayList<String> getUniqueWords(String document){
 		ArrayList<String> wordslist = new ArrayList<String>();
 
+		document = document.toLowerCase();
+		
 		// Read document
-		Scanner infile = new Scanner(document);
-
-		while (infile.hasNext()) {
-			// not differenced between markation characters yet
-			String word = infile.next();
+		for(String word : document.split("[^\\w-]+")) {
+			word = word.trim();
+			
+			// Skip blanks
+			if(word.length() < 1){
+				continue;
+			}
 
 			if (!wordslist.contains(word)) {
 				wordslist.add(word); // First time occurance
 			}
 		}
-		infile.close();
-
+		
 		Collections.sort(wordslist);// Sort to alphabetical order
 
 		return wordslist;
@@ -121,7 +127,7 @@ public class StringReporter {
 	 */
 	public static int getWordFrequency(String document, String word) throws IOException{
 		int count = 0; // declaration and initialization of counter 
-		String[] eachW = document.split(" "); // Splitting the string by spaces
+		String[] eachW = document.split("[^\\w-]+"); // Splitting the string by spaces and punctuation
 		for (int i = 0; i < eachW.length; i++) {
 			if (eachW[i].equalsIgnoreCase(word)) {
 				count++;
