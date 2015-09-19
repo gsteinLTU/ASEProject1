@@ -6,6 +6,7 @@ package edu.ltu.stringreporter.tests;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -64,9 +65,10 @@ public class StringReporterTest {
 	 * Test method for
 	 * {@link edu.ltu.stringreporter.StringReporter#getWordFrequency(java.lang.String, java.lang.String)}
 	 * .
+	 * @throws IOException 
 	 */
 	@Test
-	public void testGetWordFrequency() {
+	public void testGetWordFrequency() throws IOException {
 		String teststring = "Hello Kiran! Hello Jonhny. Hello, Gordon. Is that 'hello' to everyone?";
 		String s = "hello kiran hello jonhny hello gordon is that hello to everyone";
 

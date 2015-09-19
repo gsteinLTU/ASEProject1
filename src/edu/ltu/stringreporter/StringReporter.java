@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -114,9 +117,17 @@ public class StringReporter {
 	 * @param document String of document text
 	 * @param word Word to count occurrences of
 	 * @return Number of times word appears in the document
+	 * @throws IOException 
 	 */
-	public static int getWordFrequency(String document, String word){
-		return 0;
+	public static int getWordFrequency(String document, String word) throws IOException{
+		int count = 0; // declaration and initialization of counter 
+		String[] eachW = document.split(" "); // Splitting the string by spaces
+		for (int i = 0; i < eachW.length; i++) {
+			if (eachW[i].equalsIgnoreCase(word)) {
+				count++;
+			}
+		}
+		return count;
 	}
 	
 	/**
@@ -125,7 +136,9 @@ public class StringReporter {
 	 * @return Number of letters in word
 	 */
 	public static int getWordLength(String word){
-		return 0;
+		String w = word.replaceAll("[\\-\\+\\.\\^:,]",""); // Removing specific characters.
+		int wLength = w.trim().length(); // trimming white spaces and calculating the length of the word.
+		return wLength;
 	}	
 
 }
