@@ -36,6 +36,8 @@ public class StringReporter {
 			// User has selected a file
 			try{
 				handleFile(openDialog.getSelectedFile());
+				System.out.println("Press any key to exit...");
+				System.in.read();
 			} catch(IllegalArgumentException e){
 				System.out.println("Invalid file type selected. This program requires a .txt file. The program will now exit.");
 			} catch(IOException e){
@@ -46,6 +48,7 @@ public class StringReporter {
 			// User has not selected a file
 			System.out.println("No file selected. The program will now exit.");	
 		}
+		
 	}
 	
 	/**

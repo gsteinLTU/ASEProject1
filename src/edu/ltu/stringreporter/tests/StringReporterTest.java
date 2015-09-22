@@ -92,6 +92,8 @@ public class StringReporterTest {
 		assertEquals(1, StringReporter.getWordFrequency(teststring, "everyone"));
 	}
 
+
+	
 	/**
 	 * Test method for
 	 * {@link edu.ltu.stringreporter.StringReporter#getWordLength(java.lang.String)}
